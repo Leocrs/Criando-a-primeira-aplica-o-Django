@@ -37,7 +37,63 @@
                 </div>
 
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item">An item</li>
+                    <li class="list-group-item">
+
+                        <!-- CARD -->
+                        <div class="card mb-3" style="max-width: 540px;">
+                            <div class="row g-0">
+
+                                <!-- COLUNA DO AVATAR -->
+                                <div class="col-md-1">
+                                    <img src="{{ post.autor.foto.url }}"
+                                         style="height:35px; width:35px"
+                                         class="rounded-circle mt-3 ms-2">
+                                </div>
+
+                                <!-- COLUNA DE CONTEÚDO -->
+                                <div class="col-md-11">
+                                    <div class="row">
+                                        <div class="col-md-10">
+                                            <div class="card-body me-0 pe-0">
+
+                                                <!-- TEXTO DO COMENTÁRIO -->
+                                                <p class="card-text">
+                                                    This is a wider card with supporting text below as a
+                                                    natural lead-in to additional content. This content is a little bit
+                                                    longer.
+                                                </p>
+
+                                                <!-- INFORMAÇÕES DO AUTOR DO COMENTÁRIO -->
+                                                <p class="card-text">
+                                                    <small class="text-muted">
+                                                        Clayton Rodrigues, em 25/12/2030.
+                                                    </small>
+                                                </p>
+
+                                            </div>
+                                        </div>
+
+                                        <!-- BOTÕES DE EDIÇÃO E REMOÇÃO DE COMENTÁRIOS -->
+                                        <div class="col-md-2">
+
+                                            <div class="row">
+
+                                                <div class="col-md-1 mt-3 me-1">
+                                                    <i class="fa-solid fa-pen fa-xs"></i>
+                                                </div>
+
+                                                <div class="col-md-1 mt-3">
+                                                    <i class="fa-solid fa-trash fa-xs"></i>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
                     <li class="list-group-item">A second item</li>
                     <li class="list-group-item">A third item</li>
                     <li class="list-group-item">A fourth item</li>
