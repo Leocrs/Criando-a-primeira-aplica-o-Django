@@ -4,26 +4,46 @@
         <div class="modal-content">
             <form>
                 {% csrf_token %}
-                <div class="modal-header">
-                    <h5 class="modal-title">Comentando o post {{ post.titulo }} </h5>
+                <div class="modal-header border-0">
+                    <h5 class="modal-title">
+                        <div class="d-flex">
+                            <div class="text-secondary me-1">Comentando o post</div>
+                            <div class="text-primary">{{ post.titulo }}</div>
+                        </div>
+                    </h5>
                 </div>
 
                 <div class="modal-body">
-                    <div class="mb-3">
-                        <label for="message-text" class="col-form-label">Comentário:</label>
-                        <textarea class="form-control" id="message-text" rows="5" name="comentario"></textarea>
+                    <div class="form-floating">
+                        <textarea
+                            style="height: 100px"
+                            class="form-control"
+                            id="message-text"
+                            name="comentario"
+                            placeholder="Digite aqui o seu comentário ...">
+                        </textarea>
+                        <label for="message-text"> Seu comentário </label>
                     </div>
                 </div>
 
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" onclick="closeModal()">Close</button>
-                    <button class="btn btn-primary"
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal()">Cancelar</button>
+                    <button class="btn btn-success"
 							hx-post="{% url 'comentarios' post.id %}"
 							hx-trigger="click"
                             onclick="closeModal()">
 						Comentar
 					</button>
                 </div>
+
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">An item</li>
+                    <li class="list-group-item">A second item</li>
+                    <li class="list-group-item">A third item</li>
+                    <li class="list-group-item">A fourth item</li>
+                    <li class="list-group-item">And a fifth one</li>
+                </ul>
+
             </form>
         </div>
     </div>
