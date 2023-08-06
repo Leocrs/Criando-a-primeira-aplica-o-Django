@@ -37,7 +37,10 @@
                 </div>
 
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item">
+
+                    {% for comentario in comentarios %}
+
+                        <li class="list-group-item">
 
                         <!-- CARD -->
                         <div class="card mb-3" style="max-width: 540px;">
@@ -45,7 +48,7 @@
 
                                 <!-- COLUNA DO AVATAR -->
                                 <div class="col-md-1">
-                                    <img src="{{ post.autor.foto.url }}"
+                                    <img src="{{ comentario.perfil.foto.url }}"
                                          style="height:35px; width:35px"
                                          class="rounded-circle mt-3 ms-2">
                                 </div>
@@ -58,15 +61,13 @@
 
                                                 <!-- TEXTO DO COMENTÁRIO -->
                                                 <p class="card-text">
-                                                    This is a wider card with supporting text below as a
-                                                    natural lead-in to additional content. This content is a little bit
-                                                    longer.
+                                                    {{ comentario.texto }}
                                                 </p>
 
                                                 <!-- INFORMAÇÕES DO AUTOR DO COMENTÁRIO -->
                                                 <p class="card-text">
                                                     <small class="text-muted">
-                                                        Clayton Rodrigues, em 25/12/2030.
+                                                        {{ comentario.perfil.user.username }}, em 25/12/2030.
                                                     </small>
                                                 </p>
 
@@ -94,10 +95,7 @@
                             </div>
                         </div>
                     </li>
-                    <li class="list-group-item">A second item</li>
-                    <li class="list-group-item">A third item</li>
-                    <li class="list-group-item">A fourth item</li>
-                    <li class="list-group-item">And a fifth one</li>
+                    {% endfor %}
                 </ul>
 
             </form>
