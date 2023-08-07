@@ -36,14 +36,14 @@
 					</button>
                 </div>
 
-                <ul class="list-group list-group-flush">
+                <ul class="list-group list-group-flush" id="conteudo_modal">
 
                     {% for comentario in comentarios %}
 
                         <li class="list-group-item">
 
-                        <!-- CARD -->
-                        <div class="card mb-3" style="max-width: 540px;">
+                            <!-- CARD -->
+                            <div class="card mb-3" style="max-width: 540px;">
                             <div class="row g-0">
 
                                 <!-- COLUNA DO AVATAR -->
@@ -78,12 +78,16 @@
                                         <div class="col-md-2">
 
                                             <div class="row">
-
-                                                <div class="col-md-1 mt-3 me-1">
+                                                {% csrf_token %}
+                                                <div class="col-md-1 mt-3 me-1 btn">
                                                     <i class="fa-solid fa-pen fa-xs"></i>
                                                 </div>
 
-                                                <div class="col-md-1 mt-3">
+                                                <div class="col-md-1 mt-3 btn"
+                                                        hx-delete="{% url 'deletar_post_htmx' comentario.id %}"
+                                                        hx-trigger="click"
+                                                        onclick="closeModal()"
+                                                        hx-confirm="Deseja excluir o comentário?">
                                                     <i class="fa-solid fa-trash fa-xs"></i>
                                                 </div>
 
@@ -94,7 +98,7 @@
                                 </div>
                             </div>
                         </div>
-                    </li>
+                        </li>
                     {% endfor %}
                 </ul>
 
