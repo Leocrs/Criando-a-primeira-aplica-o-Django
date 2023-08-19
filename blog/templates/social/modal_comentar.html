@@ -4,26 +4,104 @@
         <div class="modal-content">
             <form>
                 {% csrf_token %}
-                <div class="modal-header">
-                    <h5 class="modal-title">Comentando o post {{ post.titulo }} </h5>
+                <div class="modal-header border-0">
+                    <h5 class="modal-title">
+                        <div class="d-flex">
+                            <div class="text-secondary me-1">Comentando o post</div>
+                            <div class="text-primary">{{ post.titulo }}</div>
+                        </div>
+                    </h5>
                 </div>
 
                 <div class="modal-body">
-                    <div class="mb-3">
-                        <label for="message-text" class="col-form-label">Comentário:</label>
-                        <textarea class="form-control" id="message-text" rows="5" name="comentario"></textarea>
+                    <div class="form-floating">
+                        <textarea
+                            style="height: 100px"
+                            class="form-control"
+                            id="message-text"
+                            name="comentario"
+                            placeholder="Digite aqui o seu comentário ...">
+                        </textarea>
+                        <label for="message-text"> Seu comentário </label>
                     </div>
                 </div>
 
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" onclick="closeModal()">Close</button>
-                    <button class="btn btn-primary"
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal()">Cancelar</button>
+                    <button class="btn btn-success"
 							hx-post="{% url 'comentarios' post.id %}"
 							hx-trigger="click"
                             onclick="closeModal()">
 						Comentar
 					</button>
                 </div>
+
+                <ul class="list-group list-group-flush" id="conteudo_modal">
+
+                    {% for comentario in comentarios %}
+
+                        <li class="list-group-item">
+
+                            <!-- CARD -->
+                            <div class="card mb-3" style="max-width: 540px;">
+                            <div class="row g-0">
+
+                                <!-- COLUNA DO AVATAR -->
+                                <div class="col-md-1">
+                                    <img src="{{ comentario.perfil.foto.url }}"
+                                         style="height:35px; width:35px"
+                                         class="rounded-circle mt-3 ms-2">
+                                </div>
+
+                                <!-- COLUNA DE CONTEÚDO -->
+                                <div class="col-md-11">
+                                    <div class="row">
+                                        <div class="col-md-10">
+                                            <div class="card-body me-0 pe-0">
+
+                                                <!-- TEXTO DO COMENTÁRIO -->
+                                                <p class="card-text">
+                                                    {{ comentario.texto }}
+                                                </p>
+
+                                                <!-- INFORMAÇÕES DO AUTOR DO COMENTÁRIO -->
+                                                <p class="card-text">
+                                                    <small class="text-muted">
+                                                        {{ comentario.perfil.user.username }}, em 25/12/2030.
+                                                    </small>
+                                                </p>
+
+                                            </div>
+                                        </div>
+
+                                        <!-- BOTÕES DE EDIÇÃO E REMOÇÃO DE COMENTÁRIOS -->
+                                        <div class="col-md-2">
+
+                                            <div class="row">
+                                                {% csrf_token %}
+                                                <div class="col-md-1 mt-3 me-1 btn">
+                                                    <i class="fa-solid fa-pen fa-xs"></i>
+                                                </div>
+
+                                                <div class="col-md-1 mt-3 btn"
+                                                        hx-delete="{% url 'deletar_post_htmx' comentario.id %}"
+                                                        hx-trigger="click"
+                                                        onclick="closeModal()"
+                                                        hx-confirm="Deseja excluir o comentário?">
+                                                    <i class="fa-solid fa-trash fa-xs"></i>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+
             </form>
         </div>
     </div>
